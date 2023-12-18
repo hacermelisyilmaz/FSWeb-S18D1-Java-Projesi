@@ -14,7 +14,7 @@ public class BurgerDaoImpl implements BurgerDao {
     @Override
     public Burger save(Burger burger) {
         entityManager.persist(burger);
-        return Burger;
+        return burger;
     }
 
     @Override
@@ -30,7 +30,10 @@ public class BurgerDaoImpl implements BurgerDao {
 
     @Override
     public List<Burger> findByPrice(Double price) {
-        return null;
+        TypedQuery<Burger> query = entityManager
+                .createQuery("SELECT b FROM Burger b WHERE b.price > :price ORDER BY b.price DESC", Burger.class);
+        query.setParameter("price", price);
+        return query.getResultList();
     }
 
     @Override
