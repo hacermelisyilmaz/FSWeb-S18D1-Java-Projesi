@@ -4,11 +4,10 @@ import com.workintech.burger.entity.Burger;
 import com.workintech.burger.util.BreadType;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BurgerDao {
     Burger save(Burger burger);
-    Optional<Burger> findById(Long id);
+    Burger findById(Long id);
     List<Burger> findAll();
     List<Burger> findByPrice(Double price);
     List<Burger> findByBreadType(BreadType breadType);

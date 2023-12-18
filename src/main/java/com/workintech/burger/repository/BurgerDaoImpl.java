@@ -20,8 +20,8 @@ public class BurgerDaoImpl implements BurgerDao {
     }
 
     @Override
-    public Optional<Burger> findById(Long id) {
-        return Optional.ofNullable(entityManager.find(Burger.class, id));
+    public Burger findById(Long id) {
+        return entityManager.find(Burger.class, id);
     }
 
     @Override
@@ -61,7 +61,7 @@ public class BurgerDaoImpl implements BurgerDao {
 
     @Override
     public Burger remove(Long id) {
-        Optional<Burger> employee = findById(id);
+        Optional<Burger> employee = Optional.ofNullable(findById(id));
         if(employee.isPresent()){
             entityManager.remove(employee.get());
             return employee.get();
