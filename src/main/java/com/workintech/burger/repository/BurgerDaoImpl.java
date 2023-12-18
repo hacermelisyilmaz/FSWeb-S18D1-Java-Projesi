@@ -2,14 +2,18 @@ package com.workintech.burger.repository;
 
 import com.workintech.burger.dao.BurgerDao;
 import com.workintech.burger.entity.Burger;
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 import java.util.Optional;
 
 public class BurgerDaoImpl implements BurgerDao {
+    private EntityManager entityManager;
+
     @Override
     public Burger save(Burger burger) {
-        return null;
+        entityManager.persist(burger);
+        return Burger;
     }
 
     @Override
