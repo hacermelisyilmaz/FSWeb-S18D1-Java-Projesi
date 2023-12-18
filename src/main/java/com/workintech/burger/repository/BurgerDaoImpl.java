@@ -2,6 +2,7 @@ package com.workintech.burger.repository;
 
 import com.workintech.burger.dao.BurgerDao;
 import com.workintech.burger.entity.Burger;
+import com.workintech.burger.util.BreadType;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
@@ -33,6 +34,14 @@ public class BurgerDaoImpl implements BurgerDao {
         TypedQuery<Burger> query = entityManager
                 .createQuery("SELECT b FROM Burger b WHERE b.price > :price ORDER BY b.price DESC", Burger.class);
         query.setParameter("price", price);
+        return query.getResultList();
+    }
+
+    @Override
+    public List<Burger> findByBreadType(BreadType breadType) {
+        TypedQuery<Burger> query = entityManager
+                .createQuery("SELECT b FROM Burger b WHERE b.breadType = :breadType ORDER BY b.name ASC", Burger.class);
+        query.setParameter("breadType", breadType);
         return query.getResultList();
     }
 
