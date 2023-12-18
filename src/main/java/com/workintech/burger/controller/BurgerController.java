@@ -3,12 +3,14 @@ package com.workintech.burger.controller;
 import com.workintech.burger.dao.BurgerDao;
 import com.workintech.burger.entity.Burger;
 import com.workintech.burger.util.BreadType;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @RestController
 @RequestMapping("/burgers")
 public class BurgerController {
