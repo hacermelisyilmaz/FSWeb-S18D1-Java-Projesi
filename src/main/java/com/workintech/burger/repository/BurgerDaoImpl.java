@@ -47,16 +47,24 @@ public class BurgerDaoImpl implements BurgerDao {
 
     @Override
     public List<Burger> findByContent(String content) {
-        return null;
+        TypedQuery<Burger> query = entityManager
+                .createQuery("SELECT b FROM Burger b WHERE b.content LIKE :content", Burger.class);
+        query.setParameter("content", "%" + content + "%");
+        return query.getResultList();
     }
 
     @Override
     public Burger update(Burger burger) {
-        return null;
+        return entityManager.merge(burger);
     }
 
     @Override
     public Burger remove(Long id) {
+        Optional<Burger> employee = findById(id);
+        if(employee.isPresent()){
+            entityManager.remove(employee.get());
+            return employee.get();
+        }
         return null;
     }
 }
