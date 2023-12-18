@@ -3,12 +3,13 @@ package com.workintech.burger.repository;
 import com.workintech.burger.dao.BurgerDao;
 import com.workintech.burger.entity.Burger;
 import com.workintech.burger.util.BreadType;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class BurgerDaoImpl implements BurgerDao {
     private EntityManager entityManager;
 
