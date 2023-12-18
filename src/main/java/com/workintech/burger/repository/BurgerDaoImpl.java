@@ -3,6 +3,7 @@ package com.workintech.burger.repository;
 import com.workintech.burger.dao.BurgerDao;
 import com.workintech.burger.entity.Burger;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +24,8 @@ public class BurgerDaoImpl implements BurgerDao {
 
     @Override
     public List<Burger> findAll() {
-        return null;
+        TypedQuery<Burger> query = entityManager.createQuery("SELECT b FROM Burger b", Burger.class);
+        return query.getResultList();
     }
 
     @Override
