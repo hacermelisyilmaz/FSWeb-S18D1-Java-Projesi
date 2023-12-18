@@ -2,8 +2,11 @@ package com.workintech.burger.repository;
 
 import com.workintech.burger.dao.BurgerDao;
 import com.workintech.burger.entity.Burger;
+import com.workintech.burger.exceptions.BurgerException;
 import com.workintech.burger.util.BreadType;
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +16,7 @@ import java.util.Optional;
 public class BurgerDaoImpl implements BurgerDao {
     private EntityManager entityManager;
 
+    @Transactional
     @Override
     public Burger save(Burger burger) {
         entityManager.persist(burger);
@@ -21,7 +25,9 @@ public class BurgerDaoImpl implements BurgerDao {
 
     @Override
     public Burger findById(Long id) {
-        return entityManager.find(Burger.class, id);
+        Burger burger = entityManager.find(Burger.class, id);
+        if (burger == null) throw new BurgerException("Burger with given id not exist", HttpStatus.BAD_REQUEST);
+        else return burger;
     }
 
     @Override
