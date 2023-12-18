@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @Data
 @Entity
-@Table(name = "burger", schema = "fsweb")
+@Table(name = "burger", schema = "public")
 public class Burger {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
