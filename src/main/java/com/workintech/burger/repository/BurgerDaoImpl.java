@@ -18,7 +18,7 @@ public class BurgerDaoImpl implements BurgerDao {
 
     @Override
     public Optional<Burger> findById(Long id) {
-        return Optional.empty();
+        return Optional.ofNullable(entityManager.find(Burger.class, id));
     }
 
     @Override
